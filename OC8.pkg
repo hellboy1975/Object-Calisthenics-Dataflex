@@ -1,0 +1,99 @@
+
+// OC# 8 
+// "Limit the number of instance variables in a class (2 to 5)
+
+// before
+
+    Class cNewControl is a DFControl
+        
+        Procedure Construct_Object
+            
+            Forward Send Construct_Object
+            
+            
+            Property Integer piTopState             Public False
+            Property Integer piSelHeightInc         Public 0
+            Property Integer piFirstVisibleItem     Public 0
+            Property Integer piSelectedItem         Public 0
+            Property Integer piMouseTracking        Public False
+            Property Integer poButtonLeft           Public 0
+            Property Integer poButtonRight          Public 0
+            Property Integer phToolTip              Public 0
+            Property Integer piIsToolTipVisible     Public False
+            Property Integer piCurrentHotItem       Public -1
+            Property Integer piTabsColor            Public clWhite
+            Property Integer piSelectedItemColor    Public 0
+            Property Integer piHotItemTextColor     Public (GetSysColor(COLOR_HOTLIGHT))
+            Property Integer piItemTextColor        Public (GetSysColor(COLOR_WINDOWTEXT))
+            Property Integer piBackgroundColor      Public 0
+            Property Integer autosize_height_state  Public False
+            
+        End_Procedure
+        
+        //.......//
+        
+    End_Class
+    
+    // after
+    
+    Struct tMouse
+        Integer iMouseTracking
+        Integer oButtonLeft
+        Integer oButtonRight
+    End_Struct
+    
+    Struct tTooltip
+        Integer hToolTip
+        Integer iIsToolTipVisible
+    End_Struct
+    
+    Struct tNewControlColours
+        Integer iTabsColor
+        Integer iSelectedItemColor
+        Integer iHotItemTextColor
+        Integer iItemTextColor
+        Integer iBackgroundColor
+    End_Struct
+    
+    Struct tNewControlItems
+        Integer iTopState
+        Integer iSelHeightInc
+        Integer iFirstVisibleItem
+        Integer iSelectedItem
+        Integer iCurrentHotItem
+    End_Struct
+    
+    Class cNewControl is a DFControl
+        
+        Procedure Construct_Object
+            tNewControlColours tColors
+            tNewControlItems tItems
+            
+            Forward Send Construct_Object
+            
+            Property tMouse             ptMouse
+            Property tTooltip           ptTooltip
+            Property tNewControlColors  ptColors
+            Property tNewControlItems   ptItems
+            Property Integer autosize_height_state  Public False
+            
+            // fill ptColors
+            Move clWhite to tColors.iTabsColor
+            Move (GetSysColor(COLOR_HOTLIGHT)) to tColors.iHotItemTextColor
+            Move (GetSysColor(COLOR_WINDOWTEXT)) to tColors.iItemTextColor
+            Set ptColours to tColors
+            
+            // fill ptItems
+            Move -1 to tItems.iCurrentHotItem
+            Set ptItems to tItems
+            
+            
+        End_Procedure
+        
+        
+        
+        //.......//
+        
+    End_Class
+    
+    

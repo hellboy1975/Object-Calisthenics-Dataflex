@@ -1,0 +1,65 @@
+// OC #9 - No getters, setters or properties
+    
+    Class cMouseController
+        
+        Procedure Construct_Object
+            Forward Send Construct_Object
+            
+            Property Boolean pbButton1
+            Property Boolean pbButton2
+            Property Boolean pbScrollWheelUp
+            Property Boolean pbScrollWheelDown
+        End_Procedure
+        
+    End_Class
+    
+    Class cMouseModel
+        
+        Procedure Construct_Object
+            Forward Send Construct_Object
+            
+            Object oMouseController is a cMouseController
+            End_Object
+            
+        End_Procedure
+        
+        Procedure Set Button1 Boolean bClicked
+            Set pbButton1 of oMouseController to bClicked
+        End_Procedure
+        
+        Procedure Set Button2 Boolean bClicked
+            Set pbButton2 of oMouseController to bClicked
+        End_Procedure
+        
+        Procedure Set ScrollWheelUp Boolean bClicked
+            Set pbScrollWheelUp of oMouseController to bClicked
+        End_Procedure
+        
+        Procedure Set ScrollWheelDown Boolean bClicked
+            Set pbScrollWheelDown of oMouseController to bClicked
+        End_Procedure
+    End_Class
+    
+    // Bonus Discussion - Document your code!
+    
+    // Check to see if bCheckFile is true
+    If (bCheckFile = True) Send EmailFile
+    
+    
+   
+    Get Regex_Replace  sContent '/[^a-z0-9]/i'  '/(?<=\b[a-z]/ie' False to sNewContent  
+   
+   
+        
+    //********************************************************************
+    // Checks whether an element is contained in the collection.
+    // This is an 0(n) operation, where n is the size of the collection.
+    //
+    // @todo implement caching for better performance.
+    // @param string [sElement] The element to search for.
+    // @return boolean TRUE if the collection contains the element, or FALSE
+    //********************************************************************
+    
+    Function CollectionContains String sElement Returns Boolean
+        // ToDo: implement caching for better performance
+    End_Function    
